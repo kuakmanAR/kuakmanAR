@@ -25,12 +25,21 @@ while True:  # Mientras el bot esté funcionando
                 ircsock.send(bytes(f"JOIN {channel} \r\n", "UTF-8"))  # Aquí se asigna el nick al bot
 
             if ircmsg.find(":@rehash") != -1:
+                #recargo procesos
                 import modules.procesos as proc
                 from modules.procesos import *
                 
                 implib.reload(proc)
                 import modules.procesos as proc
                 from modules.procesos import *
+                
+                #recargo variables
+                import modules.vars as vars
+                from modules.vars import *
+                
+                implib.reload(vars)
+                import modules.vars as vars
+                from modules.vars import *
                 
                 ircsock.send(bytes(f"PRIVMSG #test Rehash \r\n", "UTF-8"))  # Aquí se asigna el nick al bot
     except (socket.error, socket.timeout):  # Si se produce un error (como una desconexión), volvemos a conectarnos
